@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Myeongjo:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <!-- File Parsers -->
+    <!-- File Parsers Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <style>
@@ -23,9 +23,10 @@
             color: #1e293b;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         .font-myeongjo {
-            font-family: 'Nanum+Myeongjo', serif;
+            font-family: 'Nanum Myeongjo', serif;
         }
         .font-cursive {
             font-family: 'Great Vibes', cursive;
@@ -47,25 +48,13 @@
             background-attachment: fixed;
         }
         .overlay {
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 100%);
-        }
-        .menu-gap {
-            margin-left: 250px;
-        }
-        @media (max-width: 1024px) {
-            .menu-gap {
-                margin-left: 20px;
-            }
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.8) 100%);
         }
 
-        /* 인쇄 시 디자인 요소 최적화 */
+        /* Print optimization */
         @media print {
-            body * {
-                visibility: hidden;
-            }
-            .printable-content, .printable-content * {
-                visibility: visible;
-            }
+            body * { visibility: hidden; }
+            .printable-content, .printable-content * { visibility: visible; }
             .printable-content {
                 position: absolute;
                 left: 0;
@@ -76,9 +65,7 @@
                 box-shadow: none !important;
                 border: none !important;
             }
-            .print-hide {
-                display: none !important;
-            }
+            .print-hide { display: none !important; }
         }
     </style>
 <script type="importmap">
