@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>말씀 콘텐츠 디자이너 | Heavenly Design</title>
+    <!-- process.env 에러 방지를 위한 쉼(shim) -->
+    <script>
+      window.process = window.process || { env: {} };
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,11 +31,6 @@
         }
         .font-myeongjo { font-family: 'Nanum Myeongjo', serif; }
         .font-cursive { font-family: 'Great Vibes', cursive; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        }
         .heaven-gradient {
             background: linear-gradient(to right, #4f46e5, #ec4899);
             -webkit-background-clip: text;
@@ -56,9 +55,9 @@
     <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19?dev",
-    "react-dom": "https://esm.sh/react-dom@19?dev",
-    "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+    "react": "https://esm.sh/react@19",
+    "react-dom": "https://esm.sh/react-dom@19",
+    "react-dom/client": "https://esm.sh/react-dom@19/client",
     "@google/genai": "https://esm.sh/@google/genai",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "react/": "https://esm.sh/react@^19.2.4/"

@@ -76,41 +76,41 @@ const App: React.FC = () => {
       <main className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-6 pb-24">
         {step === 'landing' && (
           <div className="flex flex-col items-center justify-center min-h-[75vh] text-center animate-in fade-in zoom-in duration-1000 pt-20">
-            <div className="mb-8 mt-16 inline-block bg-white/40 backdrop-blur-md px-8 py-3 rounded-full border border-white/50 shadow-sm animate-bounce">
-              <span className="font-cursive text-4xl text-indigo-600 font-bold">Heavenly Paradise</span>
+            <div className="mb-6 mt-12 inline-block bg-white/40 backdrop-blur-md px-6 py-2 rounded-full border border-white/50 shadow-sm animate-bounce">
+              <span className="font-cursive text-3xl text-indigo-600 font-bold">Heavenly Paradise</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-10 tracking-tighter drop-shadow-2xl text-slate-900 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter drop-shadow-2xl text-slate-900 leading-tight">
               말씀에 <span className="heaven-gradient">영감</span>을 더하다
             </h1>
-            <p className="text-2xl text-slate-800 mb-12 max-w-4xl leading-relaxed font-bold">
+            <p className="text-xl md:text-2xl text-slate-800 mb-10 max-w-3xl leading-relaxed font-bold">
               업로드한 말씀이 <span className="text-indigo-600 underline underline-offset-8">AI 디자인</span>을 만나<br/>
               가장 아름다운 전도용 카드로 태어납니다.
             </p>
             <div className="relative w-full flex flex-col items-center">
-              {/* 업로드 박스 크기 조정: max-w-lg(512px), h-56(224px) */}
-              <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-lg h-56 bg-white/25 backdrop-blur-2xl rounded-[3rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-[1.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] mx-auto group">
-                <div className="p-4 bg-indigo-600 rounded-full mb-4 shadow-2xl group-hover:bg-indigo-700 transition-all duration-300 group-hover:scale-110">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {/* 업로드 박스 크기 더 축소: max-w-md(448px), h-48(192px) */}
+              <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-md h-48 bg-white/25 backdrop-blur-2xl rounded-[2.5rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.25)] mx-auto group">
+                <div className="p-3 bg-indigo-600 rounded-full mb-3 shadow-xl group-hover:bg-indigo-700 transition-all duration-300 group-hover:scale-110">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                 </div>
-                <span className="text-2xl text-slate-900 font-black tracking-tight">말씀 파일 업로드</span>
-                <span className="text-base text-slate-600 mt-1 font-bold opacity-70">여기를 클릭하거나 파일을 끌어다 놓으세요</span>
-                <span className="text-[10px] text-indigo-600 mt-2 font-medium bg-indigo-50/50 px-4 py-0.5 rounded-full border border-indigo-100/50">PDF, DOCX, TXT, HWP 지원</span>
-                <input type="file" className="hidden" accept=".hwp,.pdf,.docx,.txt" onChange={handleFileUpload} />
+                <span className="text-xl text-slate-900 font-black tracking-tight">말씀 파일 업로드</span>
+                <span className="text-sm text-slate-600 mt-1 font-bold opacity-70">클릭하거나 파일을 끌어다 놓으세요</span>
+                <span className="text-[10px] text-indigo-600 mt-2 font-medium bg-indigo-50/50 px-3 py-0.5 rounded-full border border-indigo-100/50 uppercase tracking-widest font-black">PDF / DOCX / TXT</span>
+                <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={handleFileUpload} />
               </label>
               
-              <div className="mt-12 flex items-center justify-center gap-6 text-indigo-700 font-black text-lg bg-white/40 backdrop-blur-sm py-4 px-10 rounded-full border border-white/50 shadow-sm">
+              <div className="mt-10 flex items-center justify-center gap-5 text-indigo-700 font-black text-base bg-white/40 backdrop-blur-sm py-3 px-8 rounded-full border border-white/50 shadow-sm">
                 <span>말씀 업로드</span>
-                <span className="text-indigo-300 text-xl">──▶</span>
+                <span className="text-indigo-300 text-lg">▶</span>
                 <span>AI 분석</span>
-                <span className="text-indigo-300 text-xl">──▶</span>
-                <span>전도용 카드 생성</span>
+                <span className="text-indigo-300 text-lg">▶</span>
+                <span>디자인 생성</span>
               </div>
 
               {error && (
-                <div className="mt-10 animate-in slide-in-from-top-4">
-                  <p className="text-rose-600 text-xl font-black bg-rose-50 px-10 py-4 rounded-3xl shadow-2xl inline-block border-2 border-rose-100">
+                <div className="mt-8 animate-in slide-in-from-top-4">
+                  <p className="text-rose-600 text-lg font-black bg-rose-50 px-8 py-3 rounded-2xl shadow-xl inline-block border-2 border-rose-100">
                     ⚠️ {error}
                   </p>
                 </div>
@@ -121,13 +121,13 @@ const App: React.FC = () => {
 
         {step === 'uploading' && (
           <div className="flex flex-col items-center justify-center min-h-[75vh] animate-in fade-in duration-500">
-            <div className="w-56 h-56 relative mb-16">
-              <div className="absolute inset-0 border-[12px] border-indigo-100 rounded-full"></div>
-              <div className="absolute inset-0 border-[12px] border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
-              <div className="absolute inset-12 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full animate-pulse shadow-[0_0_60px_rgba(79,70,229,0.5)]"></div>
+            <div className="w-48 h-48 relative mb-12">
+              <div className="absolute inset-0 border-[10px] border-indigo-100 rounded-full"></div>
+              <div className="absolute inset-0 border-[10px] border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
+              <div className="absolute inset-10 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full animate-pulse shadow-[0_0_50px_rgba(79,70,229,0.4)]"></div>
             </div>
-            <h2 className="text-5xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight text-center">말씀의 핵심 주제를 분석 중...</h2>
-            <p className="text-2xl text-slate-500 text-center font-light">불필요한 정보를 제거하고 순수한 진리만 담아내고 있습니다.</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4 font-myeongjo tracking-tight text-center">말씀의 핵심 주제를 분석 중...</h2>
+            <p className="text-xl text-slate-500 text-center font-light">불필요한 정보를 제거하고 순수한 진리만 담아내고 있습니다.</p>
           </div>
         )}
 
@@ -145,23 +145,23 @@ const App: React.FC = () => {
                   </div>
                 )}
               </div>
-              <div className="order-1 lg:order-2 lg:sticky lg:top-32 bg-white/90 p-12 rounded-[4rem] border-4 border-white shadow-xl backdrop-blur-3xl">
-                <div className="mb-12 text-center lg:text-left">
-                  <div className="flex items-center gap-4 mb-5 justify-center lg:justify-start">
-                    <div className="w-12 h-[2px] bg-indigo-200"></div>
-                    <span className="text-indigo-600 font-black text-xs tracking-[0.4em] uppercase">Sermon Insight</span>
+              <div className="order-1 lg:order-2 lg:sticky lg:top-32 bg-white/90 p-12 rounded-[3.5rem] border-4 border-white shadow-xl backdrop-blur-3xl">
+                <div className="mb-10 text-center lg:text-left">
+                  <div className="flex items-center gap-4 mb-4 justify-center lg:justify-start">
+                    <div className="w-10 h-[2px] bg-indigo-200"></div>
+                    <span className="text-indigo-600 font-black text-[10px] tracking-[0.4em] uppercase">Sermon Insight</span>
                   </div>
-                  <h4 className="text-4xl font-bold font-myeongjo text-slate-900 leading-tight mb-4">{result.summaryCard.subject}</h4>
-                  <p className="text-slate-400 text-lg font-medium">{result.summaryCard.date}</p>
+                  <h4 className="text-3xl font-bold font-myeongjo text-slate-900 leading-tight mb-3">{result.summaryCard.subject}</h4>
+                  <p className="text-slate-400 text-base font-medium">{result.summaryCard.date}</p>
                 </div>
                 <div>
-                  <h5 className="text-xs font-black text-slate-400 mb-6 uppercase tracking-[0.4em] flex items-center gap-3 justify-center lg:justify-start">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> 핵심 진리 요약
+                  <h5 className="text-[10px] font-black text-slate-400 mb-6 uppercase tracking-[0.4em] flex items-center gap-3 justify-center lg:justify-start">
+                    <span className="w-2 h-2 rounded-full bg-blue-500"></span> 핵심 진리 요약
                   </h5>
-                  <ul className="space-y-6">
+                  <ul className="space-y-5">
                     {result.summaryCard.coreMessage.map((m, i) => (
-                      <li key={i} className="text-slate-700 text-xl flex items-start gap-4 group">
-                        <span className="mt-2.5 w-2 h-2 rounded-full bg-blue-100 shrink-0 group-hover:bg-blue-500 transition-all"></span>
+                      <li key={i} className="text-slate-700 text-lg flex items-start gap-3 group">
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-100 shrink-0 group-hover:bg-blue-500 transition-all"></span>
                         <span className="leading-snug font-bold">{m}</span>
                       </li>
                     ))}
