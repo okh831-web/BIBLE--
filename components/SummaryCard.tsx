@@ -29,53 +29,58 @@ ${data.hashtags.join(' ')}
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="bg-white rounded-[2rem] shadow-2xl overflow-hidden max-w-sm mx-auto border border-white flex flex-col h-full transform transition-transform hover:rotate-1 printable-content">
-        <div className="bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-400 p-10 text-white relative overflow-hidden">
+      <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden max-w-sm mx-auto border border-white flex flex-col h-full transform transition-transform hover:scale-[1.01] printable-content">
+        <div className="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-12 text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-white/10 -skew-x-12 translate-x-[-100%] animate-[shimmer_5s_infinite]"></div>
-          <p className="text-[10px] tracking-[0.2em] opacity-80 mb-2 uppercase font-bold">{data.date}</p>
-          <h3 className="text-2xl font-bold leading-tight font-myeongjo mb-4">{data.subject}</h3>
-          <div className="w-10 h-1 bg-white/40 rounded-full"></div>
+          <p className="text-[11px] tracking-[0.3em] opacity-80 mb-3 uppercase font-black">{data.date}</p>
+          <h3 className="text-3xl font-bold leading-tight font-myeongjo mb-6 drop-shadow-lg">
+            {data.subject}
+          </h3>
+          <div className="w-12 h-1.5 bg-white/40 rounded-full"></div>
         </div>
         
-        <div className="p-10 flex-1 flex flex-col gap-8">
+        <div className="p-10 flex-1 flex flex-col gap-10">
           <section>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-6 h-[1px] bg-blue-300"></span>
-              <h4 className="text-[10px] font-bold text-blue-400 tracking-[0.2em] uppercase">Core Wisdom</h4>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-[2px] bg-indigo-200"></span>
+              <h4 className="text-xs font-black text-indigo-400 tracking-[0.3em] uppercase">Core Message</h4>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {data.coreMessage.map((msg, i) => (
-                <p key={i} className="text-slate-600 text-sm leading-relaxed font-medium">
-                  <span className="text-blue-300 mr-2">/</span> {msg}
-                </p>
-              ))}
-            </div>
-          </section>
-
-          <section className="bg-slate-50/50 p-5 rounded-2xl border-l-2 border-indigo-200">
-            <p className="text-xs text-slate-500 italic font-myeongjo leading-relaxed">
-              "{data.scripture}"
-            </p>
-          </section>
-
-          <section>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-6 h-[1px] bg-indigo-300"></span>
-              <h4 className="text-[10px] font-bold text-indigo-400 tracking-[0.2em] uppercase">Life Action</h4>
-            </div>
-            <div className="space-y-2">
-              {data.actionPoints.map((p, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-400"></div>
-                  <p className="text-slate-800 text-sm font-bold">{p}</p>
+                <div key={i} className="flex items-start gap-3 group">
+                   <span className="text-indigo-300 font-bold mt-0.5">/</span>
+                   <p className="text-slate-700 text-base leading-snug font-bold group-hover:text-indigo-600 transition-colors">
+                     {msg}
+                   </p>
                 </div>
               ))}
             </div>
           </section>
 
-          <div className="mt-auto pt-6 flex flex-wrap gap-2 opacity-60">
+          <section className="bg-slate-50 p-6 rounded-[1.5rem] border-l-4 border-indigo-400 shadow-sm">
+            <p className="text-sm text-slate-600 italic font-myeongjo leading-relaxed">
+              "{data.scripture}"
+            </p>
+          </section>
+
+          <section>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-[2px] bg-rose-200"></span>
+              <h4 className="text-xs font-black text-rose-400 tracking-[0.3em] uppercase">Life Action</h4>
+            </div>
+            <div className="space-y-3">
+              {data.actionPoints.map((p, i) => (
+                <div key={i} className="flex items-center gap-3 bg-rose-50/30 p-2 rounded-xl border border-rose-100/50">
+                  <div className="w-2 h-2 rounded-full bg-rose-400 shadow-sm"></div>
+                  <p className="text-slate-800 text-sm font-black">{p}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <div className="mt-auto pt-6 flex flex-wrap gap-2 opacity-50">
             {data.hashtags.map((tag, i) => (
-              <span key={i} className="text-[10px] text-slate-400 font-medium">{tag}</span>
+              <span key={i} className="text-[10px] text-slate-500 font-bold bg-slate-100 px-2 py-1 rounded-md">{tag}</span>
             ))}
           </div>
         </div>
@@ -84,9 +89,9 @@ ${data.hashtags.join(' ')}
       <div className="flex gap-4 w-full max-w-sm print-hide">
         <button 
           onClick={handleCopy}
-          className="w-full py-4 bg-slate-900 text-white text-sm font-bold rounded-2xl hover:bg-slate-800 transition-colors uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg"
+          className="w-full py-5 bg-slate-900 text-white text-sm font-black rounded-2xl hover:bg-slate-800 transition-all active:scale-95 uppercase tracking-widest flex items-center justify-center gap-3 shadow-2xl"
         >
-          데이터 복사하기
+          카드 데이터 복사
         </button>
       </div>
 

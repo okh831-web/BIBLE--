@@ -86,20 +86,30 @@ const App: React.FC = () => {
               업로드한 말씀이 <span className="text-indigo-600 underline underline-offset-8">AI 디자인</span>을 만나<br/>
               가장 아름다운 전도용 카드로 태어납니다.
             </p>
-            <div className="relative">
-              <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-[380px] h-48 bg-white/25 backdrop-blur-2xl rounded-[2.5rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-105 shadow-2xl mx-auto">
-                <div className="p-4 bg-indigo-600 rounded-full mb-3 shadow-2xl">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="relative w-full flex flex-col items-center">
+              <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-2xl h-72 bg-white/25 backdrop-blur-2xl rounded-[3rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-[1.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] mx-auto group">
+                <div className="p-6 bg-indigo-600 rounded-full mb-6 shadow-2xl group-hover:bg-indigo-700 transition-all duration-300 group-hover:scale-110">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                 </div>
-                <span className="text-xl text-slate-900 font-black tracking-tight">말씀 파일 업로드</span>
-                <span className="text-xs text-slate-600 mt-1 font-bold opacity-70">PDF, DOCX, TXT 가능</span>
+                <span className="text-3xl text-slate-900 font-black tracking-tight">말씀 파일 업로드</span>
+                <span className="text-lg text-slate-600 mt-2 font-bold opacity-70">여기를 클릭하거나 파일을 끌어다 놓으세요</span>
+                <span className="text-sm text-indigo-600 mt-1 font-medium bg-indigo-50/50 px-4 py-1 rounded-full border border-indigo-100/50">PDF, DOCX, TXT, HWP 지원</span>
                 <input type="file" className="hidden" accept=".hwp,.pdf,.docx,.txt" onChange={handleFileUpload} />
               </label>
+              
+              <div className="mt-12 flex items-center justify-center gap-6 text-indigo-700 font-black text-xl bg-white/40 backdrop-blur-sm py-4 px-10 rounded-full border border-white/50 shadow-sm">
+                <span>말씀 업로드</span>
+                <span className="text-indigo-300 text-2xl">──▶</span>
+                <span>AI 분석</span>
+                <span className="text-indigo-300 text-2xl">──▶</span>
+                <span>전도용 카드 생성</span>
+              </div>
+
               {error && (
-                <div className="mt-8 animate-in slide-in-from-top-4">
-                  <p className="text-rose-600 text-lg font-black bg-rose-50 px-8 py-3 rounded-2xl shadow-lg inline-block border border-rose-100">
+                <div className="mt-10 animate-in slide-in-from-top-4">
+                  <p className="text-rose-600 text-xl font-black bg-rose-50 px-10 py-4 rounded-3xl shadow-2xl inline-block border-2 border-rose-100">
                     ⚠️ {error}
                   </p>
                 </div>
@@ -110,13 +120,13 @@ const App: React.FC = () => {
 
         {step === 'uploading' && (
           <div className="flex flex-col items-center justify-center min-h-[75vh] animate-in fade-in duration-500">
-            <div className="w-48 h-48 relative mb-16">
-              <div className="absolute inset-0 border-[10px] border-indigo-100 rounded-full"></div>
-              <div className="absolute inset-0 border-[10px] border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
-              <div className="absolute inset-10 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full animate-pulse shadow-2xl"></div>
+            <div className="w-56 h-56 relative mb-16">
+              <div className="absolute inset-0 border-[12px] border-indigo-100 rounded-full"></div>
+              <div className="absolute inset-0 border-[12px] border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
+              <div className="absolute inset-12 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full animate-pulse shadow-[0_0_60px_rgba(79,70,229,0.5)]"></div>
             </div>
-            <h2 className="text-4xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight text-center">말씀의 원본 제목과 핵심을 분석 중...</h2>
-            <p className="text-xl text-slate-500 text-center font-light">하늘의 지혜를 가장 충실하게 담아내고 있습니다.</p>
+            <h2 className="text-5xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight text-center">말씀의 원본 제목과 핵심을 분석 중...</h2>
+            <p className="text-2xl text-slate-500 text-center font-light">하늘의 지혜를 가장 충실하게 담아내고 있습니다.</p>
           </div>
         )}
 
