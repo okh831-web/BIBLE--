@@ -2,9 +2,10 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { SermonOutput } from "./types.ts";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
-
 export const generateSermonContent = async (text: string): Promise<SermonOutput> => {
+  // 호출 시마다 인스턴스를 생성하여 최신 API 키를 반영하도록 보장
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+  
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `당신은 기독교 말씀 콘텐츠 디자이너입니다. 제공된 [입력 말씀 텍스트]를 분석하여 요약 카드와 인포그래픽 내용을 작성하세요.
