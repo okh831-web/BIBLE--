@@ -87,23 +87,24 @@ const App: React.FC = () => {
               가장 아름다운 전도용 카드로 태어납니다.
             </p>
             <div className="relative w-full flex flex-col items-center">
-              <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-2xl h-72 bg-white/25 backdrop-blur-2xl rounded-[3rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-[1.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] mx-auto group">
-                <div className="p-6 bg-indigo-600 rounded-full mb-6 shadow-2xl group-hover:bg-indigo-700 transition-all duration-300 group-hover:scale-110">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {/* 업로드 박스 크기 조정: max-w-lg(512px), h-56(224px) */}
+              <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-lg h-56 bg-white/25 backdrop-blur-2xl rounded-[3rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-[1.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] mx-auto group">
+                <div className="p-4 bg-indigo-600 rounded-full mb-4 shadow-2xl group-hover:bg-indigo-700 transition-all duration-300 group-hover:scale-110">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                 </div>
-                <span className="text-3xl text-slate-900 font-black tracking-tight">말씀 파일 업로드</span>
-                <span className="text-lg text-slate-600 mt-2 font-bold opacity-70">여기를 클릭하거나 파일을 끌어다 놓으세요</span>
-                <span className="text-sm text-indigo-600 mt-1 font-medium bg-indigo-50/50 px-4 py-1 rounded-full border border-indigo-100/50">PDF, DOCX, TXT, HWP 지원</span>
+                <span className="text-2xl text-slate-900 font-black tracking-tight">말씀 파일 업로드</span>
+                <span className="text-base text-slate-600 mt-1 font-bold opacity-70">여기를 클릭하거나 파일을 끌어다 놓으세요</span>
+                <span className="text-[10px] text-indigo-600 mt-2 font-medium bg-indigo-50/50 px-4 py-0.5 rounded-full border border-indigo-100/50">PDF, DOCX, TXT, HWP 지원</span>
                 <input type="file" className="hidden" accept=".hwp,.pdf,.docx,.txt" onChange={handleFileUpload} />
               </label>
               
-              <div className="mt-12 flex items-center justify-center gap-6 text-indigo-700 font-black text-xl bg-white/40 backdrop-blur-sm py-4 px-10 rounded-full border border-white/50 shadow-sm">
+              <div className="mt-12 flex items-center justify-center gap-6 text-indigo-700 font-black text-lg bg-white/40 backdrop-blur-sm py-4 px-10 rounded-full border border-white/50 shadow-sm">
                 <span>말씀 업로드</span>
-                <span className="text-indigo-300 text-2xl">──▶</span>
+                <span className="text-indigo-300 text-xl">──▶</span>
                 <span>AI 분석</span>
-                <span className="text-indigo-300 text-2xl">──▶</span>
+                <span className="text-indigo-300 text-xl">──▶</span>
                 <span>전도용 카드 생성</span>
               </div>
 
