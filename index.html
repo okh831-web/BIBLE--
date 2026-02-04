@@ -74,6 +74,7 @@
     "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.4",
     "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
   }
 }
@@ -81,5 +82,7 @@
 </head>
 <body>
     <div id="root"></div>
+    <!-- entry point explicitly defined to ensure deployment works -->
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>

@@ -16,37 +16,16 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'card' | 'info'>('card');
 
-  // 홈으로 리셋하는 함수를 메모이제이션하여 안정성 확보
+  // 홈으로 리셋 - 모든 상태를 초기화하여 첫 화면으로 복귀
   const reset = useCallback(() => {
     setResult(null);
     setError(null);
     setActiveTab('card');
     setStep('landing');
     
-    // URL 쿼리 파라미터가 있다면 제거하여 깨끗한 상태로 복귀
+    // URL 정리
     if (window.location.search) {
-      try {
-        window.history.replaceState({}, '', window.location.pathname);
-      } catch (e) {
-        console.warn("History API error:", e);
-      }
-    }
-  }, []);
-
-  // 외부 공유 데이터 로드 로직 (방어적 처리)
-  useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const sharedData = params.get('share');
-      if (sharedData) {
-        const decodedData = JSON.parse(decodeURIComponent(escape(atob(sharedData))));
-        if (decodedData && decodedData.summaryCard) {
-          setResult(decodedData);
-          setStep('results');
-        }
-      }
-    } catch (e) {
-      console.error("Failed to parse shared data:", e);
+      window.history.replaceState({}, '', window.location.pathname);
     }
   }, []);
 
@@ -61,17 +40,17 @@ const App: React.FC = () => {
     try {
       const text = await parseFile(file);
       if (!text || !text.trim()) {
-        throw new Error("파일에서 텍스트를 추출할 수 없습니다. 내용이 비어있거나 지원되지 않는 파일 형식입니다.");
+        throw new Error("파일에서 텍스트를 읽을 수 없습니다. 다른 형식의 파일을 시도해 주세요.");
       }
       
       const data = await generateSermonContent(text);
-      if (!data) throw new Error("분석 결과가 유효하지 않습니다.");
+      if (!data) throw new Error("분석 결과 생성에 실패했습니다.");
       
       setResult(data);
       setStep('results');
     } catch (err: any) {
       console.error(err);
-      setError(err.message || '파일 분석 중 오류가 발생했습니다. 다시 시도해주세요.');
+      setError(err.message || '파일 처리 중 오류가 발생했습니다.');
       setStep('landing');
     } finally {
       setLoading(false);
@@ -81,7 +60,7 @@ const App: React.FC = () => {
 
   const handleNavSelect = (tab: 'card' | 'info') => {
     if (!result) {
-      setError("먼저 파일을 업로드하여 결과물을 생성해주세요.");
+      setError("먼저 파일을 업로드해 주세요.");
       setTimeout(() => setError(null), 3000);
       return;
     }
@@ -90,7 +69,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen relative flex flex-col transition-colors duration-500 ${step === 'landing' ? 'landing-bg' : 'bg-slate-50'}`}>
+    <div className={`min-h-screen relative flex flex-col transition-all duration-700 ${step === 'landing' ? 'landing-bg' : 'bg-slate-50'}`}>
       {/* Landing Overlay Layer */}
       {step === 'landing' && <div className="absolute inset-0 overlay pointer-events-none"></div>}
 
@@ -103,7 +82,7 @@ const App: React.FC = () => {
 
       <main className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-6 pb-24">
         {step === 'landing' && (
-          <div className="flex flex-col items-center justify-center min-h-[70vh] text-center animate-in fade-in zoom-in duration-1000 pt-20">
+          <div className="flex flex-col items-center justify-center min-h-[75vh] text-center animate-in fade-in zoom-in duration-1000 pt-20">
             <div className="mb-8 mt-16 inline-block bg-white/40 backdrop-blur-md px-8 py-3 rounded-full border border-white/50 shadow-sm animate-bounce">
               <span className="font-cursive text-4xl text-indigo-600 font-bold">Heavenly Paradise</span>
             </div>
@@ -129,7 +108,7 @@ const App: React.FC = () => {
                 <input type="file" className="hidden" accept=".hwp,.pdf,.docx,.txt" onChange={handleFileUpload} />
               </label>
 
-              <div className="mt-8 flex items-center justify-center gap-4 text-indigo-700 font-black text-lg bg-white/40 backdrop-blur-sm py-3 px-8 rounded-full border border-white/50 shadow-sm w-max mx-auto">
+              <div className="mt-12 flex items-center justify-center gap-4 text-indigo-700 font-black text-lg bg-white/40 backdrop-blur-sm py-3 px-8 rounded-full border border-white/50 shadow-sm w-max mx-auto">
                 <span>말씀 업로드</span>
                 <span className="text-indigo-400">──▶</span>
                 <span>AI 분석</span>
@@ -149,14 +128,14 @@ const App: React.FC = () => {
         )}
 
         {step === 'uploading' && (
-          <div className="flex flex-col items-center justify-center min-h-[70vh] animate-in fade-in duration-500">
+          <div className="flex flex-col items-center justify-center min-h-[75vh] animate-in fade-in duration-500">
             <div className="w-48 h-48 relative mb-16">
               <div className="absolute inset-0 border-[10px] border-indigo-100 rounded-full"></div>
               <div className="absolute inset-0 border-[10px] border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
               <div className="absolute inset-10 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full animate-pulse shadow-[0_0_50px_rgba(79,70,229,0.5)]"></div>
             </div>
-            <h2 className="text-4xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight">영의 지혜를 분석하는 중...</h2>
-            <p className="text-xl text-slate-500 text-center font-light max-w-2xl">하늘의 진주 같은 말씀에서 핵심을 정성스럽게 추출하고 있습니다.</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight text-center">하늘의 지혜를 분석 중입니다...</h2>
+            <p className="text-xl text-slate-500 text-center font-light max-w-2xl">올려주신 말씀의 원본 제목과 핵심을 충실히 담아내고 있습니다.</p>
           </div>
         )}
 
@@ -169,7 +148,7 @@ const App: React.FC = () => {
                     <div className="mb-10 text-center lg:text-left">
                       <span className="px-5 py-1.5 bg-rose-100 text-rose-600 rounded-full text-base font-black mb-4 inline-block shadow-sm">EVANGELISM CORE CARD</span>
                       <h3 className="text-4xl font-bold mb-4 text-slate-900 tracking-tight">전도용 요약 카드</h3>
-                      <p className="text-lg text-slate-500 leading-relaxed max-w-xl">영혼을 깨우는 원본 그대로의 말씀 제목과<br/>핵심 메시지를 담았습니다.</p>
+                      <p className="text-lg text-slate-500 leading-relaxed max-w-xl">말씀의 원본 제목을 그대로 유지하며<br/>핵심 진리를 명확히 전달합니다.</p>
                     </div>
                     <SummaryCard data={result.summaryCard} />
                   </div>
@@ -178,7 +157,7 @@ const App: React.FC = () => {
                     <div className="mb-10 text-center lg:text-left">
                       <span className="px-5 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-base font-black mb-4 inline-block shadow-sm">MEDITATION INFOGRAPHIC</span>
                       <h3 className="text-4xl font-bold mb-4 text-slate-900 tracking-tight">묵상 인포그래픽</h3>
-                      <p className="text-lg text-slate-500 leading-relaxed max-w-xl">깊은 기도의 시간, 영감을 더해주는<br/>말씀 원본 기반 인포그래픽입니다.</p>
+                      <p className="text-lg text-slate-500 leading-relaxed max-w-xl">말씀의 깊은 은혜를 한눈에 볼 수 있는<br/>아름다운 인포그래픽입니다.</p>
                     </div>
                     <InfographicView data={result.infographic} />
                   </div>
@@ -191,6 +170,7 @@ const App: React.FC = () => {
                     <div className="w-12 h-[2px] bg-indigo-200"></div>
                     <span className="text-indigo-600 font-black text-xs tracking-[0.4em] uppercase">Sermon Insight</span>
                   </div>
+                  {/* AI가 제목을 그대로 유지하도록 프롬프트를 강화했으므로 result.summaryCard.subject 출력 */}
                   <h4 className="text-4xl font-bold font-myeongjo text-slate-900 leading-tight mb-4">{result.summaryCard.subject}</h4>
                   <p className="text-slate-400 text-lg font-medium">{result.summaryCard.date}</p>
                 </div>
@@ -198,7 +178,7 @@ const App: React.FC = () => {
                 <div className="space-y-12">
                   <div>
                     <h5 className="text-xs font-black text-slate-400 mb-6 uppercase tracking-[0.4em] flex items-center gap-3">
-                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> 핵심 진리
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> 핵심 진리 요약
                     </h5>
                     <ul className="space-y-6">
                       {result.summaryCard.coreMessage.map((m, i) => (
