@@ -125,8 +125,8 @@ const App: React.FC = () => {
               <div className="absolute inset-0 border-[12px] border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
               <div className="absolute inset-12 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full animate-pulse shadow-[0_0_60px_rgba(79,70,229,0.5)]"></div>
             </div>
-            <h2 className="text-5xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight text-center">말씀의 원본 제목과 핵심을 분석 중...</h2>
-            <p className="text-2xl text-slate-500 text-center font-light">하늘의 지혜를 가장 충실하게 담아내고 있습니다.</p>
+            <h2 className="text-5xl font-bold text-slate-900 mb-6 font-myeongjo tracking-tight text-center">말씀의 핵심 주제를 분석 중...</h2>
+            <p className="text-2xl text-slate-500 text-center font-light">불필요한 정보를 제거하고 순수한 진리만 담아내고 있습니다.</p>
           </div>
         )}
 
@@ -145,8 +145,8 @@ const App: React.FC = () => {
                 )}
               </div>
               <div className="order-1 lg:order-2 lg:sticky lg:top-32 bg-white/90 p-12 rounded-[4rem] border-4 border-white shadow-xl backdrop-blur-3xl">
-                <div className="mb-12">
-                  <div className="flex items-center gap-4 mb-5">
+                <div className="mb-12 text-center lg:text-left">
+                  <div className="flex items-center gap-4 mb-5 justify-center lg:justify-start">
                     <div className="w-12 h-[2px] bg-indigo-200"></div>
                     <span className="text-indigo-600 font-black text-xs tracking-[0.4em] uppercase">Sermon Insight</span>
                   </div>
@@ -154,7 +154,7 @@ const App: React.FC = () => {
                   <p className="text-slate-400 text-lg font-medium">{result.summaryCard.date}</p>
                 </div>
                 <div>
-                  <h5 className="text-xs font-black text-slate-400 mb-6 uppercase tracking-[0.4em] flex items-center gap-3">
+                  <h5 className="text-xs font-black text-slate-400 mb-6 uppercase tracking-[0.4em] flex items-center gap-3 justify-center lg:justify-start">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> 핵심 진리 요약
                   </h5>
                   <ul className="space-y-6">
