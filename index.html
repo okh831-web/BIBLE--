@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>말씀 콘텐츠 디자이너 | Heavenly Design</title>
-    <!-- process.env 에러 방지를 위한 쉼(shim) -->
+    <!-- process.env 에러 방지를 위한 전역 쉼(shim) - 최상단 배치 -->
     <script>
-      window.process = window.process || { env: {} };
+      window.process = { env: { NODE_ENV: 'production' } };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">

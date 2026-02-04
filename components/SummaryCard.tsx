@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { SummaryCardData } from '../types';
+import { SummaryCardData } from '../types.ts';
 
 interface SummaryCardProps {
   data: SummaryCardData;

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { InfographicData } from '../types';
+import { InfographicData } from '../types.ts';
 
 interface InfographicViewProps {
   data: InfographicData;
