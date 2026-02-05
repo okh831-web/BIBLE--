@@ -3,8 +3,8 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { SermonOutput } from "./types.ts";
 
 export const generateSermonContent = async (text: string): Promise<SermonOutput> => {
-  // 호출 시마다 인스턴스를 생성하여 최신 API 키를 반영하도록 보장
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+  // 배포 환경의 process.env.API_KEY를 명확히 참조하도록 가이드라인 준수
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",

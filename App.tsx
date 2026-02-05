@@ -88,7 +88,6 @@ const App: React.FC = () => {
             </p>
             
             <div className="relative w-full flex flex-col items-center">
-              {/* 더욱 작고 콤팩트해진 업로드 박스 */}
               <label className="cursor-pointer flex flex-col items-center justify-center w-full max-w-sm h-40 bg-white/25 backdrop-blur-3xl rounded-[2rem] border-4 border-dashed border-white/70 hover:border-indigo-400 hover:bg-white/40 transition-all duration-500 transform hover:scale-[1.02] shadow-[0_15px_35px_-5px_rgba(0,0,0,0.15)] mx-auto group">
                 <div className="p-2 bg-indigo-600 rounded-full mb-2 shadow-lg group-hover:bg-indigo-700 transition-all duration-300 group-hover:scale-110">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,12 +99,22 @@ const App: React.FC = () => {
                 <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={handleFileUpload} />
               </label>
               
-              <div className="mt-8 flex items-center justify-center gap-3 text-indigo-700 font-black text-xs bg-white/40 backdrop-blur-sm py-2 px-6 rounded-full border border-white/50 shadow-sm">
-                <span>파일 업로드</span>
-                <span className="text-indigo-300">▶</span>
-                <span>AI 말씀 분석</span>
-                <span className="text-indigo-300">▶</span>
-                <span>디자인 자동 생성</span>
+              {/* 글자 크기 확대 및 문구 수정 (요약카드 생성) */}
+              <div className="mt-10 flex items-center justify-center gap-6 text-indigo-800 font-black text-lg bg-white/60 backdrop-blur-md py-4 px-10 rounded-full border border-white shadow-xl">
+                <div className="flex items-center gap-2">
+                  <span className="bg-indigo-100 text-indigo-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                  <span>파일 업로드</span>
+                </div>
+                <span className="text-indigo-200 text-2xl">▶</span>
+                <div className="flex items-center gap-2">
+                  <span className="bg-indigo-100 text-indigo-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                  <span>AI 말씀 분석</span>
+                </div>
+                <span className="text-indigo-200 text-2xl">▶</span>
+                <div className="flex items-center gap-2">
+                  <span className="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                  <span>요약카드 생성</span>
+                </div>
               </div>
 
               {error && (
